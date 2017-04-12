@@ -1,0 +1,3170 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-nodegit/nodegit/dist/nodegit.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-nodegit">npmtest-nodegit (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-nodegit/nodegit/dist/nodegit.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">0.91% <small>(6 / 656)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">50% <small>(2 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 1)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">0.91% <small>(6 / 656)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric">1 branch</span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-nodegit/nodegit/dist/</a> &#187; nodegit.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861
+862
+863
+864
+865
+866
+867
+868
+869
+870
+871
+872
+873
+874
+875
+876
+877
+878
+879
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+891
+892
+893
+894
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904
+905
+906
+907
+908
+909
+910
+911
+912
+913
+914
+915
+916
+917
+918
+919
+920
+921
+922
+923
+924
+925
+926
+927
+928
+929
+930
+931
+932
+933
+934
+935
+936
+937
+938
+939
+940
+941
+942
+943
+944
+945
+946
+947
+948
+949
+950
+951
+952
+953
+954
+955
+956
+957
+958
+959
+960
+961
+962
+963
+964
+965
+966
+967
+968
+969
+970
+971
+972
+973
+974
+975
+976
+977
+978
+979
+980
+981
+982
+983</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+&nbsp;
+// This is a generated file, modify: generate/templates/templates/nodegit.js
+&nbsp;
+var promisify = require("promisify-node");
+var rawApi;
+&nbsp;
+// Attempt to load the production release first, if it fails fall back to the
+// debug release.
+try {
+  rawApi = require("../build/Release/nodegit.node");
+} catch (ex) {
+  /* istanbul ignore next */
+  <span class="skip-if-branch" title="else path not taken" >E</span>if (ex.code !== "MODULE_NOT_FOUND") {
+    throw ex;
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  rawApi = require("../build/Debug/nodegit.node");</span>
+}
+&nbsp;
+// Native methods do not return an identifiable function, so we
+// have to override them here
+/* jshint ignore:start */
+<span class="cstat-no" title="statement not covered" >var _AnnotatedCommit = rawApi.AnnotatedCommit;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _AnnotatedCommit_fromFetchhead = _AnnotatedCommit.fromFetchhead;</span>
+<span class="cstat-no" title="statement not covered" >_AnnotatedCommit.fromFetchhead = promisify(_AnnotatedCommit_fromFetchhead);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _AnnotatedCommit_fromRef = _AnnotatedCommit.fromRef;</span>
+<span class="cstat-no" title="statement not covered" >_AnnotatedCommit.fromRef = promisify(_AnnotatedCommit_fromRef);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _AnnotatedCommit_fromRevspec = _AnnotatedCommit.fromRevspec;</span>
+<span class="cstat-no" title="statement not covered" >_AnnotatedCommit.fromRevspec = promisify(_AnnotatedCommit_fromRevspec);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _AnnotatedCommit_lookup = _AnnotatedCommit.lookup;</span>
+<span class="cstat-no" title="statement not covered" >_AnnotatedCommit.lookup = promisify(_AnnotatedCommit_lookup);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Attr = rawApi.Attr;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Attr_get = _Attr.get;</span>
+<span class="cstat-no" title="statement not covered" >_Attr.get = promisify(_Attr_get);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Blame = rawApi.Blame;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Blame_buffer = _Blame.prototype.buffer;</span>
+<span class="cstat-no" title="statement not covered" >_Blame.prototype.buffer = promisify(_Blame_buffer);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Blame_file = _Blame.file;</span>
+<span class="cstat-no" title="statement not covered" >_Blame.file = promisify(_Blame_file);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Blob = rawApi.Blob;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Blob_createFromStream = _Blob.createFromStream;</span>
+<span class="cstat-no" title="statement not covered" >_Blob.createFromStream = promisify(_Blob_createFromStream);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Blob_createFromstreamCommit = _Blob.createFromstreamCommit;</span>
+<span class="cstat-no" title="statement not covered" >_Blob.createFromstreamCommit = promisify(_Blob_createFromstreamCommit);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Blob_dup = _Blob.prototype.dup;</span>
+<span class="cstat-no" title="statement not covered" >_Blob.prototype.dup = promisify(_Blob_dup);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Blob_lookup = _Blob.lookup;</span>
+<span class="cstat-no" title="statement not covered" >_Blob.lookup = promisify(_Blob_lookup);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Blob_lookupPrefix = _Blob.lookupPrefix;</span>
+<span class="cstat-no" title="statement not covered" >_Blob.lookupPrefix = promisify(_Blob_lookupPrefix);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Branch = rawApi.Branch;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Branch_create = _Branch.create;</span>
+<span class="cstat-no" title="statement not covered" >_Branch.create = promisify(_Branch_create);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Branch_createFromAnnotated = _Branch.createFromAnnotated;</span>
+<span class="cstat-no" title="statement not covered" >_Branch.createFromAnnotated = promisify(_Branch_createFromAnnotated);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Branch_iteratorNew = _Branch.iteratorNew;</span>
+<span class="cstat-no" title="statement not covered" >_Branch.iteratorNew = promisify(_Branch_iteratorNew);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Branch_lookup = _Branch.lookup;</span>
+<span class="cstat-no" title="statement not covered" >_Branch.lookup = promisify(_Branch_lookup);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Branch_move = _Branch.move;</span>
+<span class="cstat-no" title="statement not covered" >_Branch.move = promisify(_Branch_move);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Branch_name = _Branch.name;</span>
+<span class="cstat-no" title="statement not covered" >_Branch.name = promisify(_Branch_name);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Branch_setUpstream = _Branch.setUpstream;</span>
+<span class="cstat-no" title="statement not covered" >_Branch.setUpstream = promisify(_Branch_setUpstream);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Branch_upstream = _Branch.upstream;</span>
+<span class="cstat-no" title="statement not covered" >_Branch.upstream = promisify(_Branch_upstream);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Buf = rawApi.Buf;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Buf_grow = _Buf.prototype.grow;</span>
+<span class="cstat-no" title="statement not covered" >_Buf.prototype.grow = promisify(_Buf_grow);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Buf_set = _Buf.prototype.set;</span>
+<span class="cstat-no" title="statement not covered" >_Buf.prototype.set = promisify(_Buf_set);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Checkout = rawApi.Checkout;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Checkout_head = _Checkout.head;</span>
+<span class="cstat-no" title="statement not covered" >_Checkout.head = promisify(_Checkout_head);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Checkout_index = _Checkout.index;</span>
+<span class="cstat-no" title="statement not covered" >_Checkout.index = promisify(_Checkout_index);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Checkout_tree = _Checkout.tree;</span>
+<span class="cstat-no" title="statement not covered" >_Checkout.tree = promisify(_Checkout_tree);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Cherrypick = rawApi.Cherrypick;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Cherrypick_cherrypick = _Cherrypick.cherrypick;</span>
+<span class="cstat-no" title="statement not covered" >_Cherrypick.cherrypick = promisify(_Cherrypick_cherrypick);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Cherrypick_commit = _Cherrypick.commit;</span>
+<span class="cstat-no" title="statement not covered" >_Cherrypick.commit = promisify(_Cherrypick_commit);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Clone = rawApi.Clone;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Clone_clone = _Clone.clone;</span>
+<span class="cstat-no" title="statement not covered" >_Clone.clone = promisify(_Clone_clone);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Commit = rawApi.Commit;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Commit_create = _Commit.create;</span>
+<span class="cstat-no" title="statement not covered" >_Commit.create = promisify(_Commit_create);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Commit_createWithSignature = _Commit.createWithSignature;</span>
+<span class="cstat-no" title="statement not covered" >_Commit.createWithSignature = promisify(_Commit_createWithSignature);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Commit_dup = _Commit.prototype.dup;</span>
+<span class="cstat-no" title="statement not covered" >_Commit.prototype.dup = promisify(_Commit_dup);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Commit_headerField = _Commit.prototype.headerField;</span>
+<span class="cstat-no" title="statement not covered" >_Commit.prototype.headerField = promisify(_Commit_headerField);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Commit_lookup = _Commit.lookup;</span>
+<span class="cstat-no" title="statement not covered" >_Commit.lookup = promisify(_Commit_lookup);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Commit_lookupPrefix = _Commit.lookupPrefix;</span>
+<span class="cstat-no" title="statement not covered" >_Commit.lookupPrefix = promisify(_Commit_lookupPrefix);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Commit_nthGenAncestor = _Commit.prototype.nthGenAncestor;</span>
+<span class="cstat-no" title="statement not covered" >_Commit.prototype.nthGenAncestor = promisify(_Commit_nthGenAncestor);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Commit_parent = _Commit.prototype.parent;</span>
+<span class="cstat-no" title="statement not covered" >_Commit.prototype.parent = promisify(_Commit_parent);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Config = rawApi.Config;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Config_findProgramdata = _Config.findProgramdata;</span>
+<span class="cstat-no" title="statement not covered" >_Config.findProgramdata = promisify(_Config_findProgramdata);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Config_getStringBuf = _Config.prototype.getStringBuf;</span>
+<span class="cstat-no" title="statement not covered" >_Config.prototype.getStringBuf = promisify(_Config_getStringBuf);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Config_openDefault = _Config.openDefault;</span>
+<span class="cstat-no" title="statement not covered" >_Config.openDefault = promisify(_Config_openDefault);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Config_setString = _Config.prototype.setString;</span>
+<span class="cstat-no" title="statement not covered" >_Config.prototype.setString = promisify(_Config_setString);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Config_snapshot = _Config.prototype.snapshot;</span>
+<span class="cstat-no" title="statement not covered" >_Config.prototype.snapshot = promisify(_Config_snapshot);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Cred = rawApi.Cred;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Cred_sshKeyMemoryNew = _Cred.sshKeyMemoryNew;</span>
+<span class="cstat-no" title="statement not covered" >_Cred.sshKeyMemoryNew = promisify(_Cred_sshKeyMemoryNew);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Cred_usernameNew = _Cred.usernameNew;</span>
+<span class="cstat-no" title="statement not covered" >_Cred.usernameNew = promisify(_Cred_usernameNew);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Diff = rawApi.Diff;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Diff_blobToBuffer = _Diff.blobToBuffer;</span>
+<span class="cstat-no" title="statement not covered" >_Diff.blobToBuffer = promisify(_Diff_blobToBuffer);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Diff_findSimilar = _Diff.prototype.findSimilar;</span>
+<span class="cstat-no" title="statement not covered" >_Diff.prototype.findSimilar = promisify(_Diff_findSimilar);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Diff_fromBuffer = _Diff.fromBuffer;</span>
+<span class="cstat-no" title="statement not covered" >_Diff.fromBuffer = promisify(_Diff_fromBuffer);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Diff_getPerfdata = _Diff.prototype.getPerfdata;</span>
+<span class="cstat-no" title="statement not covered" >_Diff.prototype.getPerfdata = promisify(_Diff_getPerfdata);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Diff_indexToIndex = _Diff.indexToIndex;</span>
+<span class="cstat-no" title="statement not covered" >_Diff.indexToIndex = promisify(_Diff_indexToIndex);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Diff_indexToWorkdir = _Diff.indexToWorkdir;</span>
+<span class="cstat-no" title="statement not covered" >_Diff.indexToWorkdir = promisify(_Diff_indexToWorkdir);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Diff_merge = _Diff.prototype.merge;</span>
+<span class="cstat-no" title="statement not covered" >_Diff.prototype.merge = promisify(_Diff_merge);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Diff_toBuf = _Diff.prototype.toBuf;</span>
+<span class="cstat-no" title="statement not covered" >_Diff.prototype.toBuf = promisify(_Diff_toBuf);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Diff_treeToIndex = _Diff.treeToIndex;</span>
+<span class="cstat-no" title="statement not covered" >_Diff.treeToIndex = promisify(_Diff_treeToIndex);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Diff_treeToTree = _Diff.treeToTree;</span>
+<span class="cstat-no" title="statement not covered" >_Diff.treeToTree = promisify(_Diff_treeToTree);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Diff_treeToWorkdir = _Diff.treeToWorkdir;</span>
+<span class="cstat-no" title="statement not covered" >_Diff.treeToWorkdir = promisify(_Diff_treeToWorkdir);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Diff_treeToWorkdirWithIndex = _Diff.treeToWorkdirWithIndex;</span>
+<span class="cstat-no" title="statement not covered" >_Diff.treeToWorkdirWithIndex = promisify(_Diff_treeToWorkdirWithIndex);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Fetch = rawApi.Fetch;</span>
+<span class="cstat-no" title="statement not covered" >var _Filter = rawApi.Filter;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Filter_listNew = _Filter.listNew;</span>
+<span class="cstat-no" title="statement not covered" >_Filter.listNew = promisify(_Filter_listNew);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Giterr = rawApi.Giterr;</span>
+<span class="cstat-no" title="statement not covered" >var _Graph = rawApi.Graph;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Graph_aheadBehind = _Graph.aheadBehind;</span>
+<span class="cstat-no" title="statement not covered" >_Graph.aheadBehind = promisify(_Graph_aheadBehind);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Graph_descendantOf = _Graph.descendantOf;</span>
+<span class="cstat-no" title="statement not covered" >_Graph.descendantOf = promisify(_Graph_descendantOf);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Hashsig = rawApi.Hashsig;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Hashsig_create = _Hashsig.create;</span>
+<span class="cstat-no" title="statement not covered" >_Hashsig.create = promisify(_Hashsig_create);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Hashsig_createFromFile = _Hashsig.createFromFile;</span>
+<span class="cstat-no" title="statement not covered" >_Hashsig.createFromFile = promisify(_Hashsig_createFromFile);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Ignore = rawApi.Ignore;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Ignore_pathIsIgnored = _Ignore.pathIsIgnored;</span>
+<span class="cstat-no" title="statement not covered" >_Ignore.pathIsIgnored = promisify(_Ignore_pathIsIgnored);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Index = rawApi.Index;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Index_add = _Index.prototype.add;</span>
+<span class="cstat-no" title="statement not covered" >_Index.prototype.add = promisify(_Index_add);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Index_addAll = _Index.prototype.addAll;</span>
+<span class="cstat-no" title="statement not covered" >_Index.prototype.addAll = promisify(_Index_addAll);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Index_addByPath = _Index.prototype.addByPath;</span>
+<span class="cstat-no" title="statement not covered" >_Index.prototype.addByPath = promisify(_Index_addByPath);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Index_clear = _Index.prototype.clear;</span>
+<span class="cstat-no" title="statement not covered" >_Index.prototype.clear = promisify(_Index_clear);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Index_conflictAdd = _Index.prototype.conflictAdd;</span>
+<span class="cstat-no" title="statement not covered" >_Index.prototype.conflictAdd = promisify(_Index_conflictAdd);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Index_conflictCleanup = _Index.prototype.conflictCleanup;</span>
+<span class="cstat-no" title="statement not covered" >_Index.prototype.conflictCleanup = promisify(_Index_conflictCleanup);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Index_conflictGet = _Index.prototype.conflictGet;</span>
+<span class="cstat-no" title="statement not covered" >_Index.prototype.conflictGet = promisify(_Index_conflictGet);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Index_conflictRemove = _Index.prototype.conflictRemove;</span>
+<span class="cstat-no" title="statement not covered" >_Index.prototype.conflictRemove = promisify(_Index_conflictRemove);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Index_open = _Index.open;</span>
+<span class="cstat-no" title="statement not covered" >_Index.open = promisify(_Index_open);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Index_read = _Index.prototype.read;</span>
+<span class="cstat-no" title="statement not covered" >_Index.prototype.read = promisify(_Index_read);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Index_readTree = _Index.prototype.readTree;</span>
+<span class="cstat-no" title="statement not covered" >_Index.prototype.readTree = promisify(_Index_readTree);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Index_remove = _Index.prototype.remove;</span>
+<span class="cstat-no" title="statement not covered" >_Index.prototype.remove = promisify(_Index_remove);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Index_removeAll = _Index.prototype.removeAll;</span>
+<span class="cstat-no" title="statement not covered" >_Index.prototype.removeAll = promisify(_Index_removeAll);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Index_removeByPath = _Index.prototype.removeByPath;</span>
+<span class="cstat-no" title="statement not covered" >_Index.prototype.removeByPath = promisify(_Index_removeByPath);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Index_removeDirectory = _Index.prototype.removeDirectory;</span>
+<span class="cstat-no" title="statement not covered" >_Index.prototype.removeDirectory = promisify(_Index_removeDirectory);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Index_updateAll = _Index.prototype.updateAll;</span>
+<span class="cstat-no" title="statement not covered" >_Index.prototype.updateAll = promisify(_Index_updateAll);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Index_write = _Index.prototype.write;</span>
+<span class="cstat-no" title="statement not covered" >_Index.prototype.write = promisify(_Index_write);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Index_writeTree = _Index.prototype.writeTree;</span>
+<span class="cstat-no" title="statement not covered" >_Index.prototype.writeTree = promisify(_Index_writeTree);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Index_writeTreeTo = _Index.prototype.writeTreeTo;</span>
+<span class="cstat-no" title="statement not covered" >_Index.prototype.writeTreeTo = promisify(_Index_writeTreeTo);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Indexer = rawApi.Indexer;</span>
+<span class="cstat-no" title="statement not covered" >var _Libgit2 = rawApi.Libgit2;</span>
+<span class="cstat-no" title="statement not covered" >var _Merge = rawApi.Merge;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Merge_base = _Merge.base;</span>
+<span class="cstat-no" title="statement not covered" >_Merge.base = promisify(_Merge_base);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Merge_bases = _Merge.bases;</span>
+<span class="cstat-no" title="statement not covered" >_Merge.bases = promisify(_Merge_bases);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Merge_commits = _Merge.commits;</span>
+<span class="cstat-no" title="statement not covered" >_Merge.commits = promisify(_Merge_commits);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Merge_trees = _Merge.trees;</span>
+<span class="cstat-no" title="statement not covered" >_Merge.trees = promisify(_Merge_trees);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Note = rawApi.Note;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Note_create = _Note.create;</span>
+<span class="cstat-no" title="statement not covered" >_Note.create = promisify(_Note_create);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Note_foreach = _Note.foreach;</span>
+<span class="cstat-no" title="statement not covered" >_Note.foreach = promisify(_Note_foreach);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Note_iteratorNew = _Note.iteratorNew;</span>
+<span class="cstat-no" title="statement not covered" >_Note.iteratorNew = promisify(_Note_iteratorNew);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Note_read = _Note.read;</span>
+<span class="cstat-no" title="statement not covered" >_Note.read = promisify(_Note_read);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Note_remove = _Note.remove;</span>
+<span class="cstat-no" title="statement not covered" >_Note.remove = promisify(_Note_remove);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Object = rawApi.Object;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Object_dup = _Object.prototype.dup;</span>
+<span class="cstat-no" title="statement not covered" >_Object.prototype.dup = promisify(_Object_dup);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Object_lookup = _Object.lookup;</span>
+<span class="cstat-no" title="statement not covered" >_Object.lookup = promisify(_Object_lookup);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Object_lookupByPath = _Object.prototype.lookupByPath;</span>
+<span class="cstat-no" title="statement not covered" >_Object.prototype.lookupByPath = promisify(_Object_lookupByPath);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Object_lookupPrefix = _Object.lookupPrefix;</span>
+<span class="cstat-no" title="statement not covered" >_Object.lookupPrefix = promisify(_Object_lookupPrefix);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Object_peel = _Object.prototype.peel;</span>
+<span class="cstat-no" title="statement not covered" >_Object.prototype.peel = promisify(_Object_peel);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Object_shortId = _Object.prototype.shortId;</span>
+<span class="cstat-no" title="statement not covered" >_Object.prototype.shortId = promisify(_Object_shortId);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Odb = rawApi.Odb;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Odb_open = _Odb.open;</span>
+<span class="cstat-no" title="statement not covered" >_Odb.open = promisify(_Odb_open);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Odb_read = _Odb.prototype.read;</span>
+<span class="cstat-no" title="statement not covered" >_Odb.prototype.read = promisify(_Odb_read);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Odb_write = _Odb.prototype.write;</span>
+<span class="cstat-no" title="statement not covered" >_Odb.prototype.write = promisify(_Odb_write);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _OdbObject = rawApi.OdbObject;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _OdbObject_dup = _OdbObject.prototype.dup;</span>
+<span class="cstat-no" title="statement not covered" >_OdbObject.prototype.dup = promisify(_OdbObject_dup);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Oid = rawApi.Oid;</span>
+<span class="cstat-no" title="statement not covered" >var _Oidarray = rawApi.Oidarray;</span>
+<span class="cstat-no" title="statement not covered" >var _Openssl = rawApi.Openssl;</span>
+<span class="cstat-no" title="statement not covered" >var _Packbuilder = rawApi.Packbuilder;</span>
+<span class="cstat-no" title="statement not covered" >var _Patch = rawApi.Patch;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Patch_fromBlobAndBuffer = _Patch.fromBlobAndBuffer;</span>
+<span class="cstat-no" title="statement not covered" >_Patch.fromBlobAndBuffer = promisify(_Patch_fromBlobAndBuffer);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Patch_fromBlobs = _Patch.fromBlobs;</span>
+<span class="cstat-no" title="statement not covered" >_Patch.fromBlobs = promisify(_Patch_fromBlobs);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Patch_fromDiff = _Patch.fromDiff;</span>
+<span class="cstat-no" title="statement not covered" >_Patch.fromDiff = promisify(_Patch_fromDiff);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Patch_getHunk = _Patch.prototype.getHunk;</span>
+<span class="cstat-no" title="statement not covered" >_Patch.prototype.getHunk = promisify(_Patch_getHunk);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Patch_getLineInHunk = _Patch.prototype.getLineInHunk;</span>
+<span class="cstat-no" title="statement not covered" >_Patch.prototype.getLineInHunk = promisify(_Patch_getLineInHunk);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Patch_convenientFromDiff = _Patch.convenientFromDiff;</span>
+<span class="cstat-no" title="statement not covered" >_Patch.convenientFromDiff = promisify(_Patch_convenientFromDiff);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Pathspec = rawApi.Pathspec;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Pathspec_matchDiff = _Pathspec.prototype.matchDiff;</span>
+<span class="cstat-no" title="statement not covered" >_Pathspec.prototype.matchDiff = promisify(_Pathspec_matchDiff);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Pathspec_matchIndex = _Pathspec.prototype.matchIndex;</span>
+<span class="cstat-no" title="statement not covered" >_Pathspec.prototype.matchIndex = promisify(_Pathspec_matchIndex);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Pathspec_matchTree = _Pathspec.prototype.matchTree;</span>
+<span class="cstat-no" title="statement not covered" >_Pathspec.prototype.matchTree = promisify(_Pathspec_matchTree);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Pathspec_matchWorkdir = _Pathspec.prototype.matchWorkdir;</span>
+<span class="cstat-no" title="statement not covered" >_Pathspec.prototype.matchWorkdir = promisify(_Pathspec_matchWorkdir);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Proxy = rawApi.Proxy;</span>
+<span class="cstat-no" title="statement not covered" >var _Push = rawApi.Push;</span>
+<span class="cstat-no" title="statement not covered" >var _Rebase = rawApi.Rebase;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Rebase_init = _Rebase.init;</span>
+<span class="cstat-no" title="statement not covered" >_Rebase.init = promisify(_Rebase_init);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Rebase_next = _Rebase.prototype.next;</span>
+<span class="cstat-no" title="statement not covered" >_Rebase.prototype.next = promisify(_Rebase_next);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Rebase_open = _Rebase.open;</span>
+<span class="cstat-no" title="statement not covered" >_Rebase.open = promisify(_Rebase_open);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Refdb = rawApi.Refdb;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Refdb_open = _Refdb.open;</span>
+<span class="cstat-no" title="statement not covered" >_Refdb.open = promisify(_Refdb_open);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Reference = rawApi.Reference;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Reference_create = _Reference.create;</span>
+<span class="cstat-no" title="statement not covered" >_Reference.create = promisify(_Reference_create);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Reference_createMatching = _Reference.createMatching;</span>
+<span class="cstat-no" title="statement not covered" >_Reference.createMatching = promisify(_Reference_createMatching);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Reference_dup = _Reference.prototype.dup;</span>
+<span class="cstat-no" title="statement not covered" >_Reference.prototype.dup = promisify(_Reference_dup);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Reference_dwim = _Reference.dwim;</span>
+<span class="cstat-no" title="statement not covered" >_Reference.dwim = promisify(_Reference_dwim);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Reference_list = _Reference.list;</span>
+<span class="cstat-no" title="statement not covered" >_Reference.list = promisify(_Reference_list);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Reference_lookup = _Reference.lookup;</span>
+<span class="cstat-no" title="statement not covered" >_Reference.lookup = promisify(_Reference_lookup);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Reference_nameToId = _Reference.nameToId;</span>
+<span class="cstat-no" title="statement not covered" >_Reference.nameToId = promisify(_Reference_nameToId);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Reference_peel = _Reference.prototype.peel;</span>
+<span class="cstat-no" title="statement not covered" >_Reference.prototype.peel = promisify(_Reference_peel);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Reference_rename = _Reference.prototype.rename;</span>
+<span class="cstat-no" title="statement not covered" >_Reference.prototype.rename = promisify(_Reference_rename);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Reference_resolve = _Reference.prototype.resolve;</span>
+<span class="cstat-no" title="statement not covered" >_Reference.prototype.resolve = promisify(_Reference_resolve);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Reference_setTarget = _Reference.prototype.setTarget;</span>
+<span class="cstat-no" title="statement not covered" >_Reference.prototype.setTarget = promisify(_Reference_setTarget);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Reference_symbolicCreate = _Reference.symbolicCreate;</span>
+<span class="cstat-no" title="statement not covered" >_Reference.symbolicCreate = promisify(_Reference_symbolicCreate);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Reference_symbolicCreateMatching = _Reference.symbolicCreateMatching;</span>
+<span class="cstat-no" title="statement not covered" >_Reference.symbolicCreateMatching = promisify(_Reference_symbolicCreateMatching);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Reference_symbolicSetTarget = _Reference.prototype.symbolicSetTarget;</span>
+<span class="cstat-no" title="statement not covered" >_Reference.prototype.symbolicSetTarget = promisify(_Reference_symbolicSetTarget);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Reflog = rawApi.Reflog;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Reflog_read = _Reflog.read;</span>
+<span class="cstat-no" title="statement not covered" >_Reflog.read = promisify(_Reflog_read);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _ReflogEntry = rawApi.ReflogEntry;</span>
+<span class="cstat-no" title="statement not covered" >var _Refspec = rawApi.Refspec;</span>
+<span class="cstat-no" title="statement not covered" >var _Remote = rawApi.Remote;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Remote_connect = _Remote.prototype.connect;</span>
+<span class="cstat-no" title="statement not covered" >_Remote.prototype.connect = promisify(_Remote_connect);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Remote_create = _Remote.create;</span>
+<span class="cstat-no" title="statement not covered" >_Remote.create = promisify(_Remote_create);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Remote_createAnonymous = _Remote.createAnonymous;</span>
+<span class="cstat-no" title="statement not covered" >_Remote.createAnonymous = promisify(_Remote_createAnonymous);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Remote_createWithFetchspec = _Remote.createWithFetchspec;</span>
+<span class="cstat-no" title="statement not covered" >_Remote.createWithFetchspec = promisify(_Remote_createWithFetchspec);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Remote_defaultBranch = _Remote.prototype.defaultBranch;</span>
+<span class="cstat-no" title="statement not covered" >_Remote.prototype.defaultBranch = promisify(_Remote_defaultBranch);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Remote_delete = _Remote.delete;</span>
+<span class="cstat-no" title="statement not covered" >_Remote.delete = promisify(_Remote_delete);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Remote_disconnect = _Remote.prototype.disconnect;</span>
+<span class="cstat-no" title="statement not covered" >_Remote.prototype.disconnect = promisify(_Remote_disconnect);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Remote_download = _Remote.prototype.download;</span>
+<span class="cstat-no" title="statement not covered" >_Remote.prototype.download = promisify(_Remote_download);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Remote_dup = _Remote.prototype.dup;</span>
+<span class="cstat-no" title="statement not covered" >_Remote.prototype.dup = promisify(_Remote_dup);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Remote_fetch = _Remote.prototype.fetch;</span>
+<span class="cstat-no" title="statement not covered" >_Remote.prototype.fetch = promisify(_Remote_fetch);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Remote_getFetchRefspecs = _Remote.prototype.getFetchRefspecs;</span>
+<span class="cstat-no" title="statement not covered" >_Remote.prototype.getFetchRefspecs = promisify(_Remote_getFetchRefspecs);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Remote_getPushRefspecs = _Remote.prototype.getPushRefspecs;</span>
+<span class="cstat-no" title="statement not covered" >_Remote.prototype.getPushRefspecs = promisify(_Remote_getPushRefspecs);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Remote_list = _Remote.list;</span>
+<span class="cstat-no" title="statement not covered" >_Remote.list = promisify(_Remote_list);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Remote_lookup = _Remote.lookup;</span>
+<span class="cstat-no" title="statement not covered" >_Remote.lookup = promisify(_Remote_lookup);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Remote_push = _Remote.prototype.push;</span>
+<span class="cstat-no" title="statement not covered" >_Remote.prototype.push = promisify(_Remote_push);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Remote_referenceList = _Remote.prototype.referenceList;</span>
+<span class="cstat-no" title="statement not covered" >_Remote.prototype.referenceList = promisify(_Remote_referenceList);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Repository = rawApi.Repository;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Repository_config = _Repository.prototype.config;</span>
+<span class="cstat-no" title="statement not covered" >_Repository.prototype.config = promisify(_Repository_config);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Repository_configSnapshot = _Repository.prototype.configSnapshot;</span>
+<span class="cstat-no" title="statement not covered" >_Repository.prototype.configSnapshot = promisify(_Repository_configSnapshot);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Repository_discover = _Repository.discover;</span>
+<span class="cstat-no" title="statement not covered" >_Repository.discover = promisify(_Repository_discover);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Repository_fetchheadForeach = _Repository.prototype.fetchheadForeach;</span>
+<span class="cstat-no" title="statement not covered" >_Repository.prototype.fetchheadForeach = promisify(_Repository_fetchheadForeach);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Repository_head = _Repository.prototype.head;</span>
+<span class="cstat-no" title="statement not covered" >_Repository.prototype.head = promisify(_Repository_head);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Repository_index = _Repository.prototype.index;</span>
+<span class="cstat-no" title="statement not covered" >_Repository.prototype.index = promisify(_Repository_index);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Repository_init = _Repository.init;</span>
+<span class="cstat-no" title="statement not covered" >_Repository.init = promisify(_Repository_init);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Repository_initExt = _Repository.initExt;</span>
+<span class="cstat-no" title="statement not covered" >_Repository.initExt = promisify(_Repository_initExt);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Repository_mergeheadForeach = _Repository.prototype.mergeheadForeach;</span>
+<span class="cstat-no" title="statement not covered" >_Repository.prototype.mergeheadForeach = promisify(_Repository_mergeheadForeach);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Repository_odb = _Repository.prototype.odb;</span>
+<span class="cstat-no" title="statement not covered" >_Repository.prototype.odb = promisify(_Repository_odb);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Repository_open = _Repository.open;</span>
+<span class="cstat-no" title="statement not covered" >_Repository.open = promisify(_Repository_open);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Repository_openBare = _Repository.openBare;</span>
+<span class="cstat-no" title="statement not covered" >_Repository.openBare = promisify(_Repository_openBare);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Repository_openExt = _Repository.openExt;</span>
+<span class="cstat-no" title="statement not covered" >_Repository.openExt = promisify(_Repository_openExt);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Repository_refdb = _Repository.prototype.refdb;</span>
+<span class="cstat-no" title="statement not covered" >_Repository.prototype.refdb = promisify(_Repository_refdb);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Repository_setHead = _Repository.prototype.setHead;</span>
+<span class="cstat-no" title="statement not covered" >_Repository.prototype.setHead = promisify(_Repository_setHead);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Repository_wrapOdb = _Repository.wrapOdb;</span>
+<span class="cstat-no" title="statement not covered" >_Repository.wrapOdb = promisify(_Repository_wrapOdb);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Reset = rawApi.Reset;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Reset_reset = _Reset.reset;</span>
+<span class="cstat-no" title="statement not covered" >_Reset.reset = promisify(_Reset_reset);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Reset_default = _Reset.default;</span>
+<span class="cstat-no" title="statement not covered" >_Reset.default = promisify(_Reset_default);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Reset_fromAnnotated = _Reset.fromAnnotated;</span>
+<span class="cstat-no" title="statement not covered" >_Reset.fromAnnotated = promisify(_Reset_fromAnnotated);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Revert = rawApi.Revert;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Revert_revert = _Revert.revert;</span>
+<span class="cstat-no" title="statement not covered" >_Revert.revert = promisify(_Revert_revert);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Revert_commit = _Revert.commit;</span>
+<span class="cstat-no" title="statement not covered" >_Revert.commit = promisify(_Revert_commit);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Revparse = rawApi.Revparse;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Revparse_single = _Revparse.single;</span>
+<span class="cstat-no" title="statement not covered" >_Revparse.single = promisify(_Revparse_single);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Revwalk = rawApi.Revwalk;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Revwalk_next = _Revwalk.prototype.next;</span>
+<span class="cstat-no" title="statement not covered" >_Revwalk.prototype.next = promisify(_Revwalk_next);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Revwalk_fastWalk = _Revwalk.prototype.fastWalk;</span>
+<span class="cstat-no" title="statement not covered" >_Revwalk.prototype.fastWalk = promisify(_Revwalk_fastWalk);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Revwalk_fileHistoryWalk = _Revwalk.prototype.fileHistoryWalk;</span>
+<span class="cstat-no" title="statement not covered" >_Revwalk.prototype.fileHistoryWalk = promisify(_Revwalk_fileHistoryWalk);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Signature = rawApi.Signature;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Signature_dup = _Signature.prototype.dup;</span>
+<span class="cstat-no" title="statement not covered" >_Signature.prototype.dup = promisify(_Signature_dup);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Signature_fromBuffer = _Signature.fromBuffer;</span>
+<span class="cstat-no" title="statement not covered" >_Signature.fromBuffer = promisify(_Signature_fromBuffer);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Stash = rawApi.Stash;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Stash_apply = _Stash.apply;</span>
+<span class="cstat-no" title="statement not covered" >_Stash.apply = promisify(_Stash_apply);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Stash_drop = _Stash.drop;</span>
+<span class="cstat-no" title="statement not covered" >_Stash.drop = promisify(_Stash_drop);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Stash_foreach = _Stash.foreach;</span>
+<span class="cstat-no" title="statement not covered" >_Stash.foreach = promisify(_Stash_foreach);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Stash_pop = _Stash.pop;</span>
+<span class="cstat-no" title="statement not covered" >_Stash.pop = promisify(_Stash_pop);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Stash_save = _Stash.save;</span>
+<span class="cstat-no" title="statement not covered" >_Stash.save = promisify(_Stash_save);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Status = rawApi.Status;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Status_foreach = _Status.foreach;</span>
+<span class="cstat-no" title="statement not covered" >_Status.foreach = promisify(_Status_foreach);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Status_foreachExt = _Status.foreachExt;</span>
+<span class="cstat-no" title="statement not covered" >_Status.foreachExt = promisify(_Status_foreachExt);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _StatusList = rawApi.StatusList;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _StatusList_getPerfdata = _StatusList.prototype.getPerfdata;</span>
+<span class="cstat-no" title="statement not covered" >_StatusList.prototype.getPerfdata = promisify(_StatusList_getPerfdata);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _StatusList_create = _StatusList.create;</span>
+<span class="cstat-no" title="statement not covered" >_StatusList.create = promisify(_StatusList_create);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Strarray = rawApi.Strarray;</span>
+<span class="cstat-no" title="statement not covered" >var _Submodule = rawApi.Submodule;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Submodule_addFinalize = _Submodule.prototype.addFinalize;</span>
+<span class="cstat-no" title="statement not covered" >_Submodule.prototype.addFinalize = promisify(_Submodule_addFinalize);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Submodule_addSetup = _Submodule.addSetup;</span>
+<span class="cstat-no" title="statement not covered" >_Submodule.addSetup = promisify(_Submodule_addSetup);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Submodule_addToIndex = _Submodule.prototype.addToIndex;</span>
+<span class="cstat-no" title="statement not covered" >_Submodule.prototype.addToIndex = promisify(_Submodule_addToIndex);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Submodule_foreach = _Submodule.foreach;</span>
+<span class="cstat-no" title="statement not covered" >_Submodule.foreach = promisify(_Submodule_foreach);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Submodule_init = _Submodule.prototype.init;</span>
+<span class="cstat-no" title="statement not covered" >_Submodule.prototype.init = promisify(_Submodule_init);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Submodule_location = _Submodule.prototype.location;</span>
+<span class="cstat-no" title="statement not covered" >_Submodule.prototype.location = promisify(_Submodule_location);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Submodule_lookup = _Submodule.lookup;</span>
+<span class="cstat-no" title="statement not covered" >_Submodule.lookup = promisify(_Submodule_lookup);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Submodule_open = _Submodule.prototype.open;</span>
+<span class="cstat-no" title="statement not covered" >_Submodule.prototype.open = promisify(_Submodule_open);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Submodule_repoInit = _Submodule.prototype.repoInit;</span>
+<span class="cstat-no" title="statement not covered" >_Submodule.prototype.repoInit = promisify(_Submodule_repoInit);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Submodule_resolveUrl = _Submodule.resolveUrl;</span>
+<span class="cstat-no" title="statement not covered" >_Submodule.resolveUrl = promisify(_Submodule_resolveUrl);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Submodule_setIgnore = _Submodule.setIgnore;</span>
+<span class="cstat-no" title="statement not covered" >_Submodule.setIgnore = promisify(_Submodule_setIgnore);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Submodule_setUpdate = _Submodule.setUpdate;</span>
+<span class="cstat-no" title="statement not covered" >_Submodule.setUpdate = promisify(_Submodule_setUpdate);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Submodule_setUrl = _Submodule.setUrl;</span>
+<span class="cstat-no" title="statement not covered" >_Submodule.setUrl = promisify(_Submodule_setUrl);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Submodule_status = _Submodule.status;</span>
+<span class="cstat-no" title="statement not covered" >_Submodule.status = promisify(_Submodule_status);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Submodule_sync = _Submodule.prototype.sync;</span>
+<span class="cstat-no" title="statement not covered" >_Submodule.prototype.sync = promisify(_Submodule_sync);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Submodule_update = _Submodule.prototype.update;</span>
+<span class="cstat-no" title="statement not covered" >_Submodule.prototype.update = promisify(_Submodule_update);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Tag = rawApi.Tag;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Tag_annotationCreate = _Tag.annotationCreate;</span>
+<span class="cstat-no" title="statement not covered" >_Tag.annotationCreate = promisify(_Tag_annotationCreate);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Tag_create = _Tag.create;</span>
+<span class="cstat-no" title="statement not covered" >_Tag.create = promisify(_Tag_create);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Tag_createLightweight = _Tag.createLightweight;</span>
+<span class="cstat-no" title="statement not covered" >_Tag.createLightweight = promisify(_Tag_createLightweight);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Tag_delete = _Tag.delete;</span>
+<span class="cstat-no" title="statement not covered" >_Tag.delete = promisify(_Tag_delete);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Tag_dup = _Tag.prototype.dup;</span>
+<span class="cstat-no" title="statement not covered" >_Tag.prototype.dup = promisify(_Tag_dup);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Tag_list = _Tag.list;</span>
+<span class="cstat-no" title="statement not covered" >_Tag.list = promisify(_Tag_list);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Tag_lookup = _Tag.lookup;</span>
+<span class="cstat-no" title="statement not covered" >_Tag.lookup = promisify(_Tag_lookup);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Tag_lookupPrefix = _Tag.lookupPrefix;</span>
+<span class="cstat-no" title="statement not covered" >_Tag.lookupPrefix = promisify(_Tag_lookupPrefix);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Time = rawApi.Time;</span>
+<span class="cstat-no" title="statement not covered" >var _Transport = rawApi.Transport;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Transport_sshWithPaths = _Transport.sshWithPaths;</span>
+<span class="cstat-no" title="statement not covered" >_Transport.sshWithPaths = promisify(_Transport_sshWithPaths);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Tree = rawApi.Tree;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Tree_createUpdated = _Tree.prototype.createUpdated;</span>
+<span class="cstat-no" title="statement not covered" >_Tree.prototype.createUpdated = promisify(_Tree_createUpdated);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Tree_dup = _Tree.prototype.dup;</span>
+<span class="cstat-no" title="statement not covered" >_Tree.prototype.dup = promisify(_Tree_dup);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Tree_entryByPath = _Tree.prototype.entryByPath;</span>
+<span class="cstat-no" title="statement not covered" >_Tree.prototype.entryByPath = promisify(_Tree_entryByPath);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Tree_lookup = _Tree.lookup;</span>
+<span class="cstat-no" title="statement not covered" >_Tree.lookup = promisify(_Tree_lookup);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Tree_lookupPrefix = _Tree.lookupPrefix;</span>
+<span class="cstat-no" title="statement not covered" >_Tree.lookupPrefix = promisify(_Tree_lookupPrefix);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _TreeEntry = rawApi.TreeEntry;</span>
+<span class="cstat-no" title="statement not covered" >var _Treebuilder = rawApi.Treebuilder;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Treebuilder_insert = _Treebuilder.prototype.insert;</span>
+<span class="cstat-no" title="statement not covered" >_Treebuilder.prototype.insert = promisify(_Treebuilder_insert);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _Treebuilder_create = _Treebuilder.create;</span>
+<span class="cstat-no" title="statement not covered" >_Treebuilder.create = promisify(_Treebuilder_create);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _ConvenientPatch = rawApi.ConvenientPatch;</span>
+<span class="cstat-no" title="statement not covered" >var _ConvenientPatch_hunks = _ConvenientPatch.prototype.hunks;</span>
+<span class="cstat-no" title="statement not covered" >_ConvenientPatch.prototype.hunks = promisify(_ConvenientPatch_hunks);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var _ConvenientHunk = rawApi.ConvenientHunk;</span>
+<span class="cstat-no" title="statement not covered" >var _ConvenientHunk_lines = _ConvenientHunk.prototype.lines;</span>
+<span class="cstat-no" title="statement not covered" >_ConvenientHunk.prototype.lines = promisify(_ConvenientHunk_lines);</span>
+/* jshint ignore:end */
+&nbsp;
+// Set the exports prototype to the raw API.
+<span class="cstat-no" title="statement not covered" >exports.__proto__ = rawApi;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var importExtension = <span class="fstat-no" title="function not covered" >function importExtension(name) {</span></span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    require("./" + name);</span>
+  } catch (unhandledException) {
+<span class="cstat-no" title="statement not covered" >    if (unhandledException.code != "MODULE_NOT_FOUND") {</span>
+<span class="cstat-no" title="statement not covered" >      throw unhandledException;</span>
+    }
+  }
+};
+&nbsp;
+// Load up utils
+<span class="cstat-no" title="statement not covered" >rawApi.Utils = {};</span>
+<span class="cstat-no" title="statement not covered" >require("./utils/lookup_wrapper");</span>
+<span class="cstat-no" title="statement not covered" >require("./utils/normalize_options");</span>
+<span class="cstat-no" title="statement not covered" >require("./utils/shallow_clone");</span>
+<span class="cstat-no" title="statement not covered" >require("./utils/normalize_fetch_options");</span>
+&nbsp;
+// Load up extra types;
+<span class="cstat-no" title="statement not covered" >require("./status_file");</span>
+<span class="cstat-no" title="statement not covered" >require("./enums.js");</span>
+&nbsp;
+// Import extensions
+<span class="cstat-no" title="statement not covered" >importExtension("annotated_commit");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("attr");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("blame");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("blame_hunk");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("blame_options");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("blob");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("branch");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("branch_iterator");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("buf");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("cert");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("cert_hostkey");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("cert_x509");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("checkout");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("checkout_options");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("cherrypick");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("cherrypick_options");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("clone");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("clone_options");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("commit");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("config");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("config_entry");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("config_entry");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("cred");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("cred_default");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("cred_username");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("cred_userpass_payload");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("cvar_map");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("describe_format_options");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("describe_options");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("describe_result");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("diff");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("diff_binary");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("diff_binary_file");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("diff_delta");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("diff_file");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("diff_find_options");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("diff_hunk");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("diff_line");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("diff_options");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("diff_perfdata");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("diff_perfdata");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("diff_stats");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("error");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("fetch");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("fetch_options");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("fetch_options");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("filter");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("filter");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("filter_list");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("giterr");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("graph");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("hashsig");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("ignore");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("index");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("index_conflict_iterator");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("index_entry");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("index_time");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("indexer");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("libgit2");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("mempack");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("merge");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("merge_driver_source");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("merge_file_input");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("merge_file_options");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("merge_file_result");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("merge_options");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("merge_result");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("message");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("note");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("note_iterator");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("object");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("odb");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("odb_expand_id");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("odb_object");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("oid");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("oid_shorten");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("oidarray");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("openssl");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("packbuilder");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("patch");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("pathspec");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("pathspec_match_list");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("proxy");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("proxy_options");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("push");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("push_options");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("push_update");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("rebase");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("rebase_operation");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("rebase_options");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("refdb");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("reference");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("reflog");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("reflog_entry");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("refspec");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("remote");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("remote_callbacks");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("remote_callbacks");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("remote_head");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("remote_head");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("repository");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("repository_init_options");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("reset");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("revert");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("revert_options");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("revparse");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("revwalk");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("signature");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("smart");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("stash");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("stash_apply_options");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("status");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("status_entry");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("status_list");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("status_options");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("strarray");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("submodule");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("submodule_update_options");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("tag");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("time");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("trace");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("transaction");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("transfer_progress");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("transport");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("tree");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("tree_entry");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("tree_update");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("treebuilder");</span>
+<span class="cstat-no" title="statement not covered" >importExtension("writestream");</span>
+/* jshint ignore:start */
+&nbsp;
+// Inherit directly from the original Cherrypick object.
+<span class="cstat-no" title="statement not covered" >_Cherrypick.cherrypick.__proto__ = _Cherrypick;</span>
+&nbsp;
+// Ensure we're using the correct prototype.
+<span class="cstat-no" title="statement not covered" >_Cherrypick.cherrypick.prototype = _Cherrypick.prototype;</span>
+&nbsp;
+// Assign the function as the root
+<span class="cstat-no" title="statement not covered" >rawApi.Cherrypick = _Cherrypick.cherrypick;</span>
+&nbsp;
+// Inherit directly from the original Clone object.
+<span class="cstat-no" title="statement not covered" >_Clone.clone.__proto__ = _Clone;</span>
+&nbsp;
+// Ensure we're using the correct prototype.
+<span class="cstat-no" title="statement not covered" >_Clone.clone.prototype = _Clone.prototype;</span>
+&nbsp;
+// Assign the function as the root
+<span class="cstat-no" title="statement not covered" >rawApi.Clone = _Clone.clone;</span>
+&nbsp;
+// Inherit directly from the original Merge object.
+<span class="cstat-no" title="statement not covered" >_Merge.merge.__proto__ = _Merge;</span>
+&nbsp;
+// Ensure we're using the correct prototype.
+<span class="cstat-no" title="statement not covered" >_Merge.merge.prototype = _Merge.prototype;</span>
+&nbsp;
+// Assign the function as the root
+<span class="cstat-no" title="statement not covered" >rawApi.Merge = _Merge.merge;</span>
+&nbsp;
+// Inherit directly from the original Reset object.
+<span class="cstat-no" title="statement not covered" >_Reset.reset.__proto__ = _Reset;</span>
+&nbsp;
+// Ensure we're using the correct prototype.
+<span class="cstat-no" title="statement not covered" >_Reset.reset.prototype = _Reset.prototype;</span>
+&nbsp;
+// Assign the function as the root
+<span class="cstat-no" title="statement not covered" >rawApi.Reset = _Reset.reset;</span>
+&nbsp;
+// Inherit directly from the original Revert object.
+<span class="cstat-no" title="statement not covered" >_Revert.revert.__proto__ = _Revert;</span>
+&nbsp;
+// Ensure we're using the correct prototype.
+<span class="cstat-no" title="statement not covered" >_Revert.revert.prototype = _Revert.prototype;</span>
+&nbsp;
+// Assign the function as the root
+<span class="cstat-no" title="statement not covered" >rawApi.Revert = _Revert.revert;</span>
+&nbsp;
+/* jshint ignore:end */
+&nbsp;
+// Wrap asynchronous methods to return promises.
+<span class="cstat-no" title="statement not covered" >promisify(exports);</span>
+&nbsp;
+// Set version.
+<span class="cstat-no" title="statement not covered" >exports.version = require("../package").version;</span>
+&nbsp;
+// Expose Promise implementation.
+<span class="cstat-no" title="statement not covered" >exports.Promise = Promise;</span>
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Wed Apr 12 2017 00:26:05 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
