@@ -1,7 +1,10 @@
-# test coverage for  [nodegit (v0.18.0)](http://nodegit.org)  [![npm package](https://img.shields.io/npm/v/npmtest-nodegit.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-nodegit) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-nodegit.svg)](https://travis-ci.org/npmtest/node-npmtest-nodegit)
+# npmtest-nodegit
+
+#### test coverage for  [nodegit (v0.18.0)](http://nodegit.org)  [![npm package](https://img.shields.io/npm/v/npmtest-nodegit.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-nodegit) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-nodegit.svg)](https://travis-ci.org/npmtest/node-npmtest-nodegit)
+
 #### Node.js libgit2 asynchronous native bindings
 
-[![NPM](https://nodei.co/npm/nodegit.png?downloads=true)](https://www.npmjs.com/package/nodegit)
+[![NPM](https://nodei.co/npm/nodegit.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/nodegit)
 
 | git-branch : | [alpha](https://github.com/npmtest/node-npmtest-nodegit/tree/alpha)|
 |--:|:--|
@@ -9,11 +12,17 @@
 | test-report : | [![test-report](https://npmtest.github.io/node-npmtest-nodegit/build/test-report.badge.svg)](https://npmtest.github.io/node-npmtest-nodegit/build/test-report.html)|
 | build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-nodegit/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-nodegit/tree/gh-pages/build)|
 
-[![istanbul-coverage](https://npmtest.github.io/node-npmtest-nodegit/build/screenCapture.buildCustomOrg.browser.coverage.html.png)](https://npmtest.github.io/node-npmtest-nodegit/build/coverage.html/index.html)
+- [https://npmtest.github.io/node-npmtest-nodegit/build/coverage.html/index.html](https://npmtest.github.io/node-npmtest-nodegit/build/coverage.html/index.html)
 
-[![test-report](https://npmtest.github.io/node-npmtest-nodegit/build/screenCapture.buildCustomOrg.browser.%252Fhome%252Ftravis%252Fbuild%252Fnpmtest%252Fnode-npmtest-nodegit%252Ftmp%252Fbuild%252Ftest-report.html.png)](https://npmtest.github.io/node-npmtest-nodegit/build/test-report.html)
+[![istanbul-coverage](https://npmtest.github.io/node-npmtest-nodegit/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fcoverage.lib.html.png)](https://npmtest.github.io/node-npmtest-nodegit/build/coverage.html/index.html)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-nodegit/build/screenCapture.buildApidoc.browser.%252Fhome%252Ftravis%252Fbuild%252Fnpmdoc%252Fnode-npmdoc-nodegit%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-nodegit/build/apidoc.html)
+- [https://npmtest.github.io/node-npmtest-nodegit/build/test-report.html](https://npmtest.github.io/node-npmtest-nodegit/build/test-report.html)
+
+[![test-report](https://npmtest.github.io/node-npmtest-nodegit/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Ftest-report.html.png)](https://npmtest.github.io/node-npmtest-nodegit/build/test-report.html)
+
+- [https://npmdoc.github.io/node-npmdoc-nodegit/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-nodegit/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-nodegit/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-nodegit/build/apidoc.html)
 
 ![npmPackageListing](https://npmtest.github.io/node-npmtest-nodegit/build/screenCapture.npmPackageListing.svg)
 
@@ -40,12 +49,10 @@
     },
     "contributors": [
         {
-            "name": "John Haley",
-            "email": "john@haley.io"
+            "name": "John Haley"
         },
         {
-            "name": "Max Korp",
-            "email": "maxkorp@8bytealchemy.com"
+            "name": "Max Korp"
         }
     ],
     "dependencies": {
@@ -94,25 +101,20 @@
     "main": "dist/nodegit.js",
     "maintainers": [
         {
-            "name": "tbranyen",
-            "email": "tim@tabdeveloper.com"
+            "name": "tbranyen"
         },
         {
-            "name": "faceleg",
-            "email": "mike@pagesofinterest.net"
+            "name": "faceleg"
         },
         {
-            "name": "johnhaley81",
-            "email": "johnhaley81@gmail.com"
+            "name": "johnhaley81"
         },
         {
-            "name": "maxkorp",
-            "email": "maxkorp@8bytealchemy.com"
+            "name": "maxkorp"
         }
     ],
     "name": "nodegit",
     "optionalDependencies": {},
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git://github.com/nodegit/nodegit.git"
