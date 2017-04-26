@@ -4,7 +4,7 @@
 <tspan x="10" y="26">128 megabytes installed</tspan>
 <tspan x="10" y="42"></tspan>
 <tspan x="10" y="58">node_modules</tspan>
-<tspan x="10" y="74">└─┬ nodegit@0.18.0 </tspan>
+<tspan x="10" y="74">└─┬ nodegit@0.18.2 </tspan>
 <tspan x="10" y="90">  ├─┬ fs-extra@0.26.7 </tspan>
 <tspan x="10" y="106">  │ ├── graceful-fs@4.1.11 </tspan>
 <tspan x="10" y="122">  │ ├── jsonfile@2.4.0 </tspan>
@@ -30,10 +30,10 @@
 <tspan x="10" y="442">  │ ├─┬ nopt@3.0.6 </tspan>
 <tspan x="10" y="458">  │ │ └── abbrev@1.1.0 </tspan>
 <tspan x="10" y="474">  │ ├─┬ npmlog@4.0.2 </tspan>
-<tspan x="10" y="490">  │ │ ├─┬ are-we-there-yet@1.1.2 </tspan>
+<tspan x="10" y="490">  │ │ ├─┬ are-we-there-yet@1.1.4 </tspan>
 <tspan x="10" y="506">  │ │ │ └── delegates@1.0.0 </tspan>
 <tspan x="10" y="522">  │ │ ├── console-control-strings@1.1.0 </tspan>
-<tspan x="10" y="538">  │ │ ├─┬ gauge@2.7.3 </tspan>
+<tspan x="10" y="538">  │ │ ├─┬ gauge@2.7.4 </tspan>
 <tspan x="10" y="554">  │ │ │ ├── aproba@1.1.1 </tspan>
 <tspan x="10" y="570">  │ │ │ ├── has-unicode@2.0.1 </tspan>
 <tspan x="10" y="586">  │ │ │ ├── object-assign@4.1.1 </tspan>
@@ -84,7 +84,7 @@
 <tspan x="10" y="1306">  │ │ │   ├─┬ dashdash@1.14.1 </tspan>
 <tspan x="10" y="1322">  │ │ │   │ └── assert-plus@1.0.0 </tspan>
 <tspan x="10" y="1338">  │ │ │   ├── ecc-jsbn@0.1.1 </tspan>
-<tspan x="10" y="1354">  │ │ │   ├─┬ getpass@0.1.6 </tspan>
+<tspan x="10" y="1354">  │ │ │   ├─┬ getpass@0.1.7 </tspan>
 <tspan x="10" y="1370">  │ │ │   │ └── assert-plus@1.0.0 </tspan>
 <tspan x="10" y="1386">  │ │ │   ├── jodid25519@1.0.2 </tspan>
 <tspan x="10" y="1402">  │ │ │   ├── jsbn@0.1.1 </tspan>
@@ -116,8 +116,8 @@
 <tspan x="10" y="1818">  │ │ ├── minimist@1.2.0 </tspan>
 <tspan x="10" y="1834">  │ │ └── strip-json-comments@2.0.1 </tspan>
 <tspan x="10" y="1850">  │ └─┬ tar-pack@3.4.0 </tspan>
-<tspan x="10" y="1866">  │   ├─┬ debug@2.6.3 </tspan>
-<tspan x="10" y="1882">  │   │ └── ms@0.7.2 </tspan>
+<tspan x="10" y="1866">  │   ├─┬ debug@2.6.4 </tspan>
+<tspan x="10" y="1882">  │   │ └── ms@0.7.3 </tspan>
 <tspan x="10" y="1898">  │   ├── fstream-ignore@1.0.5 </tspan>
 <tspan x="10" y="1914">  │   ├─┬ readable-stream@2.2.9 </tspan>
 <tspan x="10" y="1930">  │   │ ├── buffer-shims@1.0.0 </tspan>
