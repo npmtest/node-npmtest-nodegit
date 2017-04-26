@@ -1,6 +1,6 @@
 # npmtest-nodegit
 
-#### test coverage for  [nodegit (v0.18.0)](http://nodegit.org)  [![npm package](https://img.shields.io/npm/v/npmtest-nodegit.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-nodegit) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-nodegit.svg)](https://travis-ci.org/npmtest/node-npmtest-nodegit)
+#### basic test coverage for  [nodegit (v0.18.2)](http://nodegit.org)  [![npm package](https://img.shields.io/npm/v/npmtest-nodegit.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-nodegit) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-nodegit.svg)](https://travis-ci.org/npmtest/node-npmtest-nodegit)
 
 #### Node.js libgit2 asynchronous native bindings
 
@@ -10,7 +10,7 @@
 |--:|:--|
 | coverage : | [![istanbul-coverage](https://npmtest.github.io/node-npmtest-nodegit/build/coverage.badge.svg)](https://npmtest.github.io/node-npmtest-nodegit/build/coverage.html/index.html)|
 | test-report : | [![test-report](https://npmtest.github.io/node-npmtest-nodegit/build/test-report.badge.svg)](https://npmtest.github.io/node-npmtest-nodegit/build/test-report.html)|
-| build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-nodegit/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-nodegit/tree/gh-pages/build)|
+| test-server-github : | [![github.com test-server](https://npmtest.github.io/node-npmtest-nodegit/GitHub-Mark-32px.png)](https://npmtest.github.io/node-npmtest-nodegit/build/app/index.html) | | build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-nodegit/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-nodegit/tree/gh-pages/build)|
 
 - [https://npmtest.github.io/node-npmtest-nodegit/build/coverage.html/index.html](https://npmtest.github.io/node-npmtest-nodegit/build/coverage.html/index.html)
 
@@ -83,13 +83,13 @@
         "lib": "./lib"
     },
     "dist": {
-        "shasum": "d4df65e4539003f1ed27853d101350f39c4746b3",
-        "tarball": "https://registry.npmjs.org/nodegit/-/nodegit-0.18.0.tgz"
+        "shasum": "32f578067a7d3b9715ec56d07bac2b837f0f1669",
+        "tarball": "https://registry.npmjs.org/nodegit/-/nodegit-0.18.2.tgz"
     },
     "engines": {
         "node": ">= 4"
     },
-    "gitHead": "6ff12edfefbc03f29db33763ee634296ec3a955c",
+    "gitHead": "35d9c3e8937a02c19f9831bb8dc42457492f7da0",
     "homepage": "http://nodegit.org",
     "keywords": [
         "libgit2",
@@ -147,7 +147,8 @@
         "libssh2": "1.7.0",
         "http_parser": "2.5.0"
     },
-    "version": "0.18.0"
+    "version": "0.18.2",
+    "bin": {}
 }
 ```
 
